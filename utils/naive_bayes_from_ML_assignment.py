@@ -9,6 +9,8 @@ import pandas as pd
 from naive_bayes import NaiveBayes
 from sklearn.metrics import accuracy_score
 from sklearn.naive_bayes import MultinomialNB
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfTransformer
 
 # load training data
 data = pd.read_csv('../dataset/parsed_data.csv')
@@ -22,8 +24,12 @@ nb = NaiveBayes()
 nb.fit(X,y)
 
 # initialize model with library
+count_vect = CountVectorizer()
+X_train_counts = count_vect.fit_transform(X)
+tfidf_transformer = TfidfTransformer()
+X_train_tfidf = tfidf_transformer.fit_transform(X_train_counts)
 naive_bayes_library = MultinomialNB()
-naive_bayes_library.fit(X,y)
+naive_bayes_library.fit(X_train_tfidf,y)
 
 # load testing data
 data_test = pd.read_csv('../dataset/test_parsed_data.csv')
@@ -33,7 +39,9 @@ X_test = data_test.content
 y_test = data_test.sentiment
 result = nb.predict(X_test)
 
-result_library = naive_bayes_library(X_test)
+X_test_counts = count_vect.transform(X_test)
+X_test_tfidf = tfidf_transformer.transform(X_test_counts)
+result_library = naive_bayes_library.predict(X_test_tfidf)
 
 # measure accuracy
 print("Single label accuracy score :",accuracy_score(y_test, result))
