@@ -9,9 +9,9 @@ import pandas as pd
 from naive_bayes import NaiveBayes
 from sklearn.metrics import accuracy_score
 from sklearn.naive_bayes import MultinomialNB
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.feature_extraction.text import TfidfTransformer
+from sklearn.feature_extraction.text import TfidfVectorizer
 
+# import numpy as np
 # load training data
 data = pd.read_csv('../dataset/parsed_data.csv')
 X = data.content
@@ -23,11 +23,8 @@ NaiveBayes()
 nb = NaiveBayes()
 nb.fit(X,y)
 
-# initialize model with library
-count_vect = CountVectorizer()
-X_train_counts = count_vect.fit_transform(X)
-tfidf_transformer = TfidfTransformer()
-X_train_tfidf = tfidf_transformer.fit_transform(X_train_counts)
+vectorizer = TfidfVectorizer()
+X_train_tfidf = vectorizer.fit_transform(X)
 naive_bayes_library = MultinomialNB()
 naive_bayes_library.fit(X_train_tfidf,y)
 
@@ -39,8 +36,7 @@ X_test = data_test.content
 y_test = data_test.sentiment
 result = nb.predict(X_test)
 
-X_test_counts = count_vect.transform(X_test)
-X_test_tfidf = tfidf_transformer.transform(X_test_counts)
+X_test_tfidf = vectorizer.transform(X_test)
 result_library = naive_bayes_library.predict(X_test_tfidf)
 
 # measure accuracy
@@ -62,6 +58,14 @@ for x in range(13):
             count += 1
     score = count/len(y_test)
     print("Multi labels ({}) accuracy score : {}".format(x+1, score))
+
+#T adalah testnya
+#test=vectorizer.transform(T)
+#probs = naive_bayes_library.predict_proba(test)
+#best_n = np.argsort(probs, axis=1)[:,-3:]
+#for a in range(best_n.size):
+#    print(cust_labels[0][a-1])
+
 
 # result
 """
