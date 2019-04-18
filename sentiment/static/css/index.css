@@ -1,0 +1,8 @@
+body, html {
+    font-family: 'Muli', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: url('../image/Background.svg') bottom;
+}

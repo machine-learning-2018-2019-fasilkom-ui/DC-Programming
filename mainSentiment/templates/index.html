@@ -1,10 +1,22 @@
+{% load staticfiles %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Deteksi Emosi</title>
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href={% static 'css/index.css' %}>
 </head>
 <body>
-<h1>Hello World</h1>
+<div class="form-container">
+    <div class="group">
+        <input type="text" id="name" required="required"/>
+        <label for="name">Your text</label>
+        <div class="bar"></div>
+    </div>
+    <div class="submit-button">Submit</div>
+</div>
 </body>
 </html>
