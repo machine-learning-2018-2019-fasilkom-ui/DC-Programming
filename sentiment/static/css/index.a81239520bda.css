@@ -1,25 +1,12 @@
 body, html {
-    font-family: Muli, sans-serif;
+    font-family: 'Muli', sans-serif;
 }
 
 body {
     height: 100%;
     margin: 0;
     background-size: 100% auto;
-    background: #255166 url('../image/Background.svg') no-repeat fixed bottom;
-}
-
-.title-heading {
-    color: white;
-    margin-left: 10%;
-    margin-top: 10%;
-    font-size: 38pt;
-}
-
-.text-description {
-    color: white;
-    margin-left: 10%;
-    font-size: 18pt;
+    background: #255166 url("../image/Background.22ea7b0874f3.svg") no-repeat fixed bottom;
 }
 
 .form-container {
@@ -28,12 +15,11 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    -ms-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, 50%);
     transform: translate(-50%, -50%);
     width: 80%;
     background: white;
     border-radius: 10px;
-    box-shadow: #444444;
 }
 
 .group {
@@ -82,7 +68,7 @@ input:focus ~ .bar:before {
 }
 
 input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px #333 inset;
+    -webkit-box-shadow: 0 0 0px 1000px #333 inset;
     -webkit-text-fill-color: white !important;
 }
 
@@ -90,22 +76,9 @@ input:-webkit-autofill {
     background: rgba(33, 150, 243, 0.3);
 }
 
-.button-container {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
 .submit-button {
-    text-align: center;
-    background-color: #73cdb3;
-    border-radius: 50px;
-    border-width: 1px;
-    padding: 10px;
-    font-size: 18pt;
-}
-
-.submit-button:hover {
-    background-color: #60b097;
-    transition: 0.3s all;
+    margin: auto;
+    border-color: #4c937b;
+    font-size: 20pt;
+    align-content: center;
 }
