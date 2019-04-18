@@ -64,7 +64,7 @@ for x in range(13):
 #probs = naive_bayes_library.predict_proba(test)
 #best_n = np.argsort(probs, axis=1)[:,-3:]
 #for a in range(best_n.size):
-#    print(cust_labels[0][a])
+#    print(cust_labels[0][a-1])
 
 
 # result
