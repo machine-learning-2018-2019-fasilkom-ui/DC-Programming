@@ -17,6 +17,7 @@ Yang bisa ditambah, menjaga konteks, gimana caranya agar negative adverbs bisa t
 ke detect sebagai pembuat negasi dari konteks kata setelahnya
 """
 
+
 def clear_tweet_element_inline(line):
     result = []
     words = line.split()
@@ -24,6 +25,7 @@ def clear_tweet_element_inline(line):
         if word[0] != '@' and word[0] != '#':
             result.append(word)
     return " ".join(result)
+
 
 def clear_line(line):
     # Saving to new var
@@ -40,6 +42,7 @@ def clear_line(line):
     line = re.sub('\s\s+', ' ', line)
 
     return line
+
 
 def stem_words(words):
     result = []
@@ -67,7 +70,18 @@ def remove_stopwords(words):
 
     return result
 
-def preprocess(line):
+
+def transform_gram(words, gram):
+    result = []
+    for n in range(len(words) - (gram-1)):
+        word = words[n]
+        for m in range(1, gram):
+            word += words[n+m]
+        result.append(word)
+    return result
+
+
+def preprocess(line, gram=1):
     line = clear_tweet_element_inline(line)
     # Clearing line from unimportant chars
     line = clear_line(line)
@@ -80,6 +94,9 @@ def preprocess(line):
     # Removing stopwords
     words = remove_stopwords(words)
 
+    if gram > 1:
+        words = transform_gram(words, gram)
+
     return words
 
 
@@ -87,7 +104,9 @@ def main():
     line = 'Box A @ExampleTag contains 3 red #ExampleHashtag and 5 white balls, ' \
            'while Box B contains 4 red and 2 blue balls.'
     print("=======================================")
-    print(preprocess(line))
+    line = preprocess(line)
+    print(line)
+    print(transform_gram(line, 2))
 
 
 if __name__ == "__main__":
