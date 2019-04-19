@@ -25,8 +25,8 @@ nb.fit(X,y)
 
 vectorizer = TfidfVectorizer()
 X_train_tfidf = vectorizer.fit_transform(X)
-naive_bayes_library = MultinomialNB()
-naive_bayes_library.fit(X_train_tfidf,y)
+nb_library = MultinomialNB()
+nb_library.fit(X_train_tfidf, y)
 
 # load testing data
 data_test = pd.read_csv('../dataset/test_parsed_data.csv')
@@ -37,7 +37,7 @@ y_test = data_test.sentiment
 result = nb.predict(X_test)
 
 X_test_tfidf = vectorizer.transform(X_test)
-result_library = naive_bayes_library.predict(X_test_tfidf)
+result_library = nb_library.predict(X_test_tfidf)
 
 # measure accuracy
 print("Single label accuracy score :",accuracy_score(y_test, result))
