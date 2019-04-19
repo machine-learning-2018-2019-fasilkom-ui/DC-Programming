@@ -3,6 +3,8 @@ from naive_bayes import NaiveBayes
 from sklearn.metrics import accuracy_score
 from preprocessor import preprocess
 
+print("Showcasing Multinomial Naive Bayes with 1-gram BoW features")
+
 data_train = pd.read_csv('../dataset/parsed_data.csv')
 X_train = data_train.content
 y_train = data_train.sentiment
@@ -25,7 +27,6 @@ nb = NaiveBayes()
 nb.fit(X_train, y_train)
 y_pred = nb.predict(X_test)
 print("Single label accuracy score with project-made model :", accuracy_score(y_test, y_pred))
-print("=====================================================================\n")
 
 labels = []
 for n in range(len(X_test)):
@@ -43,7 +44,3 @@ for x in range(13):
             count += 1
     score = count/len(y_test)
     print("({}) label(s) : {}".format(x+1, score))
-
-print(len(X_train))
-print(len(X_train[0]))
-print(X_train[0])
