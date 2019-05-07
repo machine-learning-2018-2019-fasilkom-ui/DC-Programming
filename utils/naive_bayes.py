@@ -25,6 +25,74 @@ class NaiveBayes:
         self.word_in_class = {}
         self.unique_word = []
 
+    def export_vars(self):
+        cf = open("class_freq.csv", "w")
+        tf = open("total_freq.csv", "w")
+        wfic = open("word_freq_in_class.csv", "w")
+        wic = open("word_in_class.csv", "w")
+        uw = open("unique_word.csv", "w")
+
+        # writing class freq
+        for cls in self.class_freq:
+            print("{},{}".format(cls, self.class_freq[cls]), file=cf)
+        cf.close()
+
+        # writing total freq
+        print(self.total_freq, file=tf)
+        tf.close()
+
+        # writing word freq in class
+        for wrd in self.word_freq_in_class:
+            for cls in self.word_freq_in_class[wrd]:
+                print("{},{},{}".format(wrd, cls, self.word_freq_in_class[wrd][cls]), file=wfic)
+        wfic.close()
+
+        # writing word in class
+        for cls in self.word_in_class:
+            print("{},{}".format(cls, self.word_in_class[cls]), file=wic)
+        wic.close()
+
+        # writing unique words
+        for wrd in self.unique_word:
+            print(wrd, file=uw)
+        uw.close()
+
+    def import_vars(self):
+        cf = open("class_freq.csv", "r")
+        tf = open("total_freq.csv", "r")
+        wfic = open("word_freq_in_class.csv", "r")
+        wic = open("word_in_class.csv", "r")
+        uw = open("unique_word.csv", "r")
+
+        # reading class freq
+        for line in cf:
+            cls, val = line.split(",")
+            self.class_freq[cls] = int(val)
+        cf.close()
+
+        # reading total freq
+        self.total_freq = int(tf.readline())
+        tf.close()
+
+        # reading word freq in class
+        for line in wfic:
+            wrd, cls, val = line.split(",")
+            if(wrd not in self.word_freq_in_class):
+                self.word_freq_in_class[wrd] = {}
+            self.word_freq_in_class[wrd][cls] = int(val)
+        wfic.close()
+
+        # reading word in class
+        for line in wic:
+            cls, val = line.split(",")
+            self.word_in_class[cls] = int(val)
+        wic.close()
+
+        # reading unique words
+        for wrd in uw:
+            self.unique_word.append(wrd)
+        uw.close()
+
     def update_model(self, words, class_name):
         # Add class occurence to Nc
         if class_name not in self.class_freq:
@@ -100,6 +168,10 @@ if __name__ == "__main__":
     y = [1, 1, 1, 0]
 
     nb.fit(X, y)
+    #nb.export_vars()
+    #nb = NaiveBayes()
+    #nb.import_vars()
     print(nb.predict_single(["chinese", "chinese", "chinese", "tokyo", "japan"])) # should be 1
+    print(nb.calc_prob(["chinese", "chinese", "chinese", "tokyo", "japan"]))
     #print(nb.calc_single_prob(['asdfasdfasdf','asdfasdfasdf','chinese', 'chinese', 'chinese', 'tokyo', 'japan'], 1))
     #print(nb.calc_single_prob(["asdf"], 1))

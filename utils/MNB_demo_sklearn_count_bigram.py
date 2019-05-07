@@ -12,7 +12,7 @@ X = [" ".join(preprocess(x, 2)) for x in X]
 y = data.sentiment
 
 # Transforming dataset
-vectorizer = TfidfVectorizer()
+vectorizer = CountVectorizer()
 X_train_tfidf = vectorizer.fit_transform(X)
 naive_bayes_library = MultinomialNB()
 naive_bayes_library.fit(X_train_tfidf, y)
@@ -30,5 +30,5 @@ result_library = naive_bayes_library.predict(X_test_tfidf)
 print("Single label accuracy score with library:", accuracy_score(y_test, result_library))
 
 """ Output
-Single label accuracy score with library: 0.4512900355871886
+Single label accuracy score with library: 0.7471085409252669
 """
