@@ -12,7 +12,7 @@ X = [" ".join(preprocess(x, 2)) for x in X]
 y = data.sentiment
 
 # Transforming dataset
-vectorizer = TfidfVectorizer()
+vectorizer = CountVectorizer()
 X_train_tfidf = vectorizer.fit_transform(X)
 naive_bayes_library = MultinomialNB()
 naive_bayes_library.fit(X_train_tfidf, y)
