@@ -13,14 +13,16 @@
 <h1 class="title-heading">Sentiment Detection through Text</h1>
 <p class="text-description">Put your text inside the text box and find out the sentiment of your text</p>
 <div class="form-container">
-    <div class="group">
-        <input type="text" id="name" required="required"/>
-        <label for="name">Your text</label>
-        <div class="bar"></div>
-    </div>
-    <div class="button-container">
-        <a class="submit-button">Submit</a>
-    </div>
+    <form action="/" method="post"> {% csrf_token %}
+        <div class="group">
+                <input type="text" id="name" required="required"/>
+                <label for="name">Your text</label>
+                <div class="bar"></div>
+        </div>
+        <div class="button-container">
+            <a onclick="document.forms[0].submit()" class="submit-button" type="submit">Submit</a>
+        </div>
+    </form>
 </div>
 </body>
 </html>
