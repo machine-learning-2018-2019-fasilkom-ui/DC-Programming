@@ -26,11 +26,11 @@ class NaiveBayes:
         self.unique_word = []
 
     def export_vars(self):
-        cf = open("class_freq.csv", "w")
-        tf = open("total_freq.csv", "w")
-        wfic = open("word_freq_in_class.csv", "w")
-        wic = open("word_in_class.csv", "w")
-        uw = open("unique_word.csv", "w")
+        cf = open("mainSentiment/predictions/class_freq.csv", "w")
+        tf = open("mainSentiment/predictions/total_freq.csv", "w")
+        wfic = open("mainSentiment/predictions/word_freq_in_class.csv", "w")
+        wic = open("mainSentiment/predictions/word_in_class.csv", "w")
+        uw = open("mainSentiment/predictions/unique_word.csv", "w")
 
         # writing class freq
         for cls in self.class_freq:
@@ -66,7 +66,7 @@ class NaiveBayes:
 
         # reading class freq
         for line in cf:
-            cls, val = line.split(",")
+            cls, val = line.strip().split(",")
             self.class_freq[cls] = int(val)
         cf.close()
 
@@ -76,7 +76,7 @@ class NaiveBayes:
 
         # reading word freq in class
         for line in wfic:
-            wrd, cls, val = line.split(",")
+            wrd, cls, val = line.strip().split(",")
             if(wrd not in self.word_freq_in_class):
                 self.word_freq_in_class[wrd] = {}
             self.word_freq_in_class[wrd][cls] = int(val)
@@ -84,7 +84,7 @@ class NaiveBayes:
 
         # reading word in class
         for line in wic:
-            cls, val = line.split(",")
+            cls, val = line.strip().split(",")
             self.word_in_class[cls] = int(val)
         wic.close()
 

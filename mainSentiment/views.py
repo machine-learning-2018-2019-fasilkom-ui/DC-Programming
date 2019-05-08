@@ -22,7 +22,8 @@ def generate_prob(sentence):
 def index(request):
     response = {}
     if request.method == 'POST':
-        response['chart_data'] = json.dumps(generate_prob("kids out for summer/ pool has been taken over/ no more tanning girls  #haiku #yayschoolisout #sarcasm"))
+        message_data = request.POST['text-sentiment']
+        response['chart_data'] = json.dumps(generate_prob(message_data))
         return render(request, 'index.html', response)
     else:
         return render(request, 'index.html', {'chart_data': []})
