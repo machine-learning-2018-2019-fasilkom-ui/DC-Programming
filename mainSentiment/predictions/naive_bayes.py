@@ -58,11 +58,11 @@ class NaiveBayes:
         uw.close()
 
     def import_vars(self):
-        cf = open("class_freq.csv", "r")
-        tf = open("total_freq.csv", "r")
-        wfic = open("word_freq_in_class.csv", "r")
-        wic = open("word_in_class.csv", "r")
-        uw = open("unique_word.csv", "r")
+        cf = open("mainSentiment/predictions/class_freq.csv", "r")
+        tf = open("mainSentiment/predictions/total_freq.csv", "r")
+        wfic = open("mainSentiment/predictions/word_freq_in_class.csv", "r")
+        wic = open("mainSentiment/predictions/word_in_class.csv", "r")
+        uw = open("mainSentiment/predictions/unique_word.csv", "r")
 
         # reading class freq
         for line in cf:
