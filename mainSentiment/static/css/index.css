@@ -23,13 +23,8 @@ body {
 }
 
 .form-container {
-    margin: 0;
+    margin: 0 auto;
     padding: 10px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
     width: 80%;
     background: white;
     border-radius: 10px;
@@ -108,4 +103,13 @@ input:-webkit-autofill {
 .submit-button:hover {
     background-color: #60b097;
     transition: 0.3s all;
+}
+
+#chart-container {
+    margin: 50px auto;
+    width: 80%;
+    border-width: 1px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
 }
