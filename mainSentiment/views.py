@@ -1,24 +1,28 @@
 from django.shortcuts import render
-from predictions import naive_bayes, preprocessor
+from mainSentiment.predictions import naive_bayes, preprocessor
 import json
+import math
 
-def check():
+def generate_prob(sentence):
     nb = naive_bayes.NaiveBayes()
     nb.import_vars()
-    tes = "why is everyones tweets about britains got talent?! i feel left out"
-    tes = " ".join(preprocessor.preprocess(tes,2))
-    print(tes)
-    print(nb.calc_prob(tes))
+    sentence = preprocessor.preprocess(sentence,2)
+    pred = nb.calc_prob(sentence)
+    result = []
+    sum_lst = [x[1] for x in pred]
+    sum_val = sum(sum_lst)
+    for res in pred:
+        dct = {}
+        dct['y'] = res[1] * 100 / sum_val
+        dct['label'] = res[0]
+        result.append(dct)
+    print(result)
+    return result
 
 def index(request):
     response = {}
     if request.method == 'POST':
-        response['chart_data'] = json.dumps([
-            {'y': 9, 'label': "sleep time"},
-            {'y': 30, 'label': "work time"},
-        ])
+        response['chart_data'] = json.dumps(generate_prob("kids out for summer/ pool has been taken over/ no more tanning girls  #haiku #yayschoolisout #sarcasm"))
         return render(request, 'index.html', response)
     else:
         return render(request, 'index.html', {'chart_data': []})
-
-check()

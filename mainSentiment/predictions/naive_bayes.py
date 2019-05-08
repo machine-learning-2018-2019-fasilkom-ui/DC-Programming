@@ -160,17 +160,17 @@ class NaiveBayes:
 
 
 if __name__ == "__main__":
-    nb = NaiveBayes()
+    #nb = NaiveBayes()
     X = [['chinese', 'beijing', 'chinese'],
          ['chinese', 'chinese', 'shanghai'],
          ['chinese', 'macao'],
          ['tokyo', 'japan', 'chinese']]
     y = [1, 1, 1, 0]
 
-    nb.fit(X, y)
+    #nb.fit(X, y)
     #nb.export_vars()
-    #nb = NaiveBayes()
-    #nb.import_vars()
+    nb = NaiveBayes()
+    nb.import_vars()
     print(nb.predict_single(["chinese", "chinese", "chinese", "tokyo", "japan"])) # should be 1
     print(nb.calc_prob(["chinese", "chinese", "chinese", "tokyo", "japan"]))
     #print(nb.calc_single_prob(['asdfasdfasdf','asdfasdfasdf','chinese', 'chinese', 'chinese', 'tokyo', 'japan'], 1))
