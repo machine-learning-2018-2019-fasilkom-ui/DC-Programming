@@ -149,5 +149,5 @@ ENV/
 db.sqlite3
 
 .idea/**/*
-static/**/*
+**/static/**/*
 
