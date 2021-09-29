@@ -20,7 +20,7 @@ typed-ast==1.1.0
 urllib3==1.22
 whitenoise==3.3.0
 wrapt==1.10.11
-nltk==3.4
+nltk==3.6.3
 singledispatch==3.4.0.3
 numpy==1.16
 scikit-learn==0.20.3
